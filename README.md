@@ -6,3 +6,5 @@ MinMax.java: a class called MinMax that has two short recursive methods that fin
 
 Reverse.java: it reverse a given String in 2 ways, using StringBuilder and 
               the other one is just traversing it and save it in reverse
+
+StackQueue: this is my attempt to implement Stack and Queue ADT using  ArrayList
