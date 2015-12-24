@@ -17,7 +17,7 @@ public class MyStack implements IStack
 	private int top;
 	private ArrayList<Integer> data;
 	private int initialCapacity;
-	private int currentCapacity;
+	private int availableSpace;
 	
 	public MyStack(int capacity) {
 		if (capacity<=0){
@@ -25,7 +25,7 @@ public class MyStack implements IStack
 		}
 		data = new ArrayList<Integer>();
 		top = Integer.MAX_VALUE ;
-		currentCapacity= capacity;
+		availableSpace= capacity;
 		initialCapacity = capacity;
 	}
 
@@ -34,45 +34,48 @@ public class MyStack implements IStack
 		if (isFull()) {
 			throw new MyException("Stack is full!");
 		}
-		currentCapacity--;
-		data.add(0,e);
-		
+		availableSpace--;
+		data.add(0,e);		
 	}
 	
 	@Override
 	public int pop() {
 		// TODO Auto-generated method stub
 		if (isEmpty()) {
-			throw new MyException("Stack is empty!");
+			throw new MyException("Poping Error! Stack is empty!");
 		}
-		currentCapacity++;
-		return 1;
+		availableSpace++;
+		return data.remove(0);
 	}	
 
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return currentCapacity;
+		return initialCapacity;
 	}
 
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return  (currentCapacity-initialCapacity ==0 ? true:false);
+		return  (availableSpace-initialCapacity ==0 ? true:false);
 	}
 	
 	public boolean isFull() {
-		return (currentCapacity == 0 ? true: false);
+		return (availableSpace == 0 ? true: false);
 	}
 
 	@Override
 	public int peek() {
 		// TODO Auto-generated method stub
-		return -1;
+		
+		if (isEmpty()) {
+			throw new MyException("Peeking Error! Stack is empty!");
+		}
+		return data.get(0);
 	}
 	
 //helper methods
-	public int getc() {return currentCapacity; }
+	public int getc() {return availableSpace; }
 	public int geti() {return initialCapacity; }
 
 }
